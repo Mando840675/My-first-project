@@ -1,0 +1,136 @@
+/* === Reset === */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Banner layout (Flexbox centering) === */
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6c63ff 0%, #8ec5fc 100%);
+  color: #fff;
+  text-align: center;
+  padding: 5vh 5vw;
+  overflow: hidden;
+}
+
+/* === Banner content === */
+.banner__content {
+  max-width: 720px;
+  width: 100%;
+  animation: fadeUp 1s ease-out both;
+}
+
+/* === Title — fluid vw sizing with clamp === */
+.banner__title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 2vh;
+  animation: fadeUp 1s ease-out both;
+}
+
+/* === Subtitle === */
+.banner__subtitle {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 4vh;
+  opacity: 0.9;
+  animation: fadeUp 1s 0.15s ease-out both;
+}
+
+/* === CTA Button === */
+.banner__cta {
+  display: inline-block;
+  background-color: #fff;
+  color: #6c63ff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeUp 1s 0.3s ease-out both;
+}
+
+.banner__cta:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.banner__cta:active {
+  transform: translateY(0) scale(1);
+}
+
+/* === Keyframes — fade + lift === */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Responsive — tablet === */
+@media (max-width: 768px) {
+  .banner {
+    padding: 8vh 6vw;
+  }
+
+  .banner__title {
+    font-size: clamp(1.8rem, 7vw, 3rem);
+  }
+
+  .banner__subtitle {
+    font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+  }
+}
+
+/* === Responsive — mobile (stack content) === */
+@media (max-width: 480px) {
+  .banner {
+    flex-direction: column;
+    justify-content: center;
+    padding: 10vh 6vw;
+  }
+
+  .banner__title {
+    font-size: clamp(1.6rem, 9vw, 2.5rem);
+  }
+
+  .banner__subtitle {
+    font-size: clamp(0.9rem, 4.5vw, 1.1rem);
+  }
+
+  .banner__cta {
+    padding: 0.85rem 2rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* === Respect reduced-motion preference === */
+@media (prefers-reduced-motion: reduce) {
+  .banner__content,
+  .banner__title,
+  .banner__subtitle,
+  .banner__cta {
+    animation: none;
+  }
+}
